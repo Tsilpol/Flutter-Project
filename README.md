@@ -1,16 +1,79 @@
-# flutter_application_1
+# Συνταγές App
 
-A new Flutter project.
+Αυτή η εφαρμογή Flutter είναι μια απλή διαχείριση συνταγών όπου ο χρήστης μπορεί να προσθέτει, να βλέπει, να ταξινομεί και να διαγράφει συνταγές μαγειρικής.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## Προαπαιτούμενα
 
-A few resources to get you started if this is your first Flutter project:
+- Flutter SDK (>= 3.3.0)
+- Dart SDK (συνήθως έρχεται με το Flutter)
+- IDE (Android Studio, VSCode, κτλ)
+- Emulator ή φυσική συσκευή
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Βασικά χαρακτηριστικά
+
+- **Προβολή λίστας συνταγών:**  
+  Η αρχική οθόνη εμφανίζει όλες τις αποθηκευμένες συνταγές σε λίστα. Μπορείς να επιλέξεις μια συνταγή για να δεις περισσότερες λεπτομέρειες.
+
+- **Προσθήκη νέας συνταγής:**  
+  Με το κουμπί "+" μπορείς να προσθέσεις μια νέα συνταγή, συμπληρώνοντας τίτλο, περιγραφή, χρόνο προετοιμασίας, δυσκολία, βαθμολογία, υλικά και να επιλέξεις φωτογραφία από τη συσκευή σου.
+
+- **Προβολή λεπτομερειών συνταγής:**  
+  Σε κάθε συνταγή βλέπεις την εικόνα της (αν υπάρχει), τα υλικά, τον χρόνο προετοιμασίας, τη δυσκολία, τη βαθμολογία με αστέρια και την εκτέλεση.
+
+- **Ταξινόμηση συνταγών:**  
+  Μπορείς να ταξινομήσεις τη λίστα με βάση τον χρόνο προετοιμασίας, τη βαθμολογία ή τη δυσκολία της συνταγής.
+
+- **Διαγραφή συνταγής:**  
+  Με swipe (σάρωση) προς τα δεξιά πάνω σε μια συνταγή, μπορείς να τη διαγράψεις. Υπάρχει δυνατότητα αναίρεσης μέσω Snackbar.
+
+- **Σκοτεινό και φωτεινό θέμα:**  
+  Υπάρχει επιλογή αλλαγής θέματος μεταξύ φωτεινού και σκοτεινού από το εικονίδιο στο πάνω δεξιά μέρος της οθόνης.
+
+---
+
+## Τεχνικές λεπτομέρειες
+
+- Η αποθήκευση των συνταγών γίνεται τοπικά στη συσκευή με το [Hive](https://pub.dev/packages/hive) (local NoSQL database).
+- Η επιλογή εικόνας χρησιμοποιεί το πακέτο [image_picker](https://pub.dev/packages/image_picker) και διαχειρίζεται τις απαιτούμενες άδειες με το [permission_handler](https://pub.dev/packages/permission_handler).
+- Η βαθμολογία απεικονίζεται με αστέρια μέσω custom widget `StarRating`.
+- Χρησιμοποιείται `Provider` για την διαχείριση του θέματος (theme).
+- Οι εικόνες των συνταγών μπορούν να προέρχονται είτε από τοπικό αρχείο είτε από assets.
+- Υπάρχει χρήση animation με `Hero` για ομαλή μετάβαση εικόνων στην οθόνη λεπτομερειών.
+
+---
+
+## Εξαρτήσεις
+
+- hive και hive_flutter για αποθήκευση δεδομένων
+- image_picker για επιλογή εικόνας από gallery ή κάμερα
+- provider για state management
+
+## Πώς να τρέξεις την εφαρμογή
+
+---
+
+## Σημειώσεις
+
+ Αν κάνεις αλλαγές στα μοντέλα που αποθηκεύεις με Hive, ξανατρέξε το build_runner για να ανανεωθούν οι adapters.
+ Αν έχεις προβλήματα με το build_runner, δοκίμασε να τρέξεις:
+  
+  ```bash
+      flutter pub run build_runner build --delete-conflicting-outputs
+  ```
+## Πώς να τρέξεις την εφαρμογή
+
+1. Κάνε clone το αποθετήριο.
+2. Εκτέλεσε `flutter pub get` για να εγκαταστήσεις τις εξαρτήσεις.
+3. Εκτέλεσε το Hive code generator με: flutter pub run build_runner build --delete-conflicting-outputs
+4. Για να τρέξεις την εφαρμογή στο emulator ή σε συσκευή εκτέλεσε:
+
+  ```bash
+      flutter run
+  ```
+   
+
+
